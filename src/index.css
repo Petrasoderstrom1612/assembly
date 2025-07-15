@@ -44,3 +44,21 @@ h2{
   font-size: 1.25rem;
   margin: 5px
 }
+
+.languages{
+ max-width: 350px;
+ display: flex;
+ flex-wrap: wrap;    
+ gap: 5px;
+ justify-content: center;
+}
+
+.box-div{
+  border-radius: 4px;
+  text-align: center;
+  padding-inline: 4.5px;
+  height: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
