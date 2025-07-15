@@ -12,3 +12,35 @@ body {
     display: flex;
     justify-content: center;
 }
+
+
+header{
+  text-align: center;
+}
+
+.header-h1{
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: #F9F4DA;
+}
+
+.header-p{
+  color: #8E8E8E;
+  font-size: 0.875rem;
+  max-width: 350px;
+}
+
+.status-div{
+  background-color: #10A95B;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  border-radius: 4px;
+  color: #F9F4DA;
+  margin-block: 30px;
+}
+
+h2{
+  font-size: 1.25rem;
+  margin: 5px
+}
