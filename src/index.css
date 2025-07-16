@@ -46,7 +46,7 @@ h2{
 }
 
 /* LANGUAGES*/
-.languages{
+.flex-wrapper{
  max-width: 350px;
  display: flex;
  flex-wrap: wrap;    
@@ -84,6 +84,18 @@ h2{
   background-color: #323232;
 }
 
-
-
 /* KEYBOARD WITH LETTERS*/
+
+
+.keyboard-box{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  width:30px;
+  height: 30px;
+  border-radius: 5px;
+  border: 1px solid #D7D7D7;
+  background-color: #323232;
+}
