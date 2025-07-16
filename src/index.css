@@ -45,6 +45,7 @@ h2{
   margin: 5px
 }
 
+/* LANGUAGES*/
 .languages{
  max-width: 350px;
  display: flex;
@@ -62,3 +63,27 @@ h2{
   flex-direction: column;
   justify-content: center;
 }
+
+/* HANGMAN WORD*/
+.hangman-word{
+  display: flex;
+  justify-content: center;
+  margin-block: 30px;
+  gap: 0.2em;
+}
+
+.hangman-box{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  width:30px;
+  height: 30px;
+  border-bottom: 1px solid #F9F4DA;
+  background-color: #323232;
+}
+
+
+
+/* KEYBOARD WITH LETTERS*/
