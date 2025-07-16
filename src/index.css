@@ -99,3 +99,8 @@ h2{
   border: 1px solid #D7D7D7;
   background-color: #323232;
 }
+
+.keyboard-btn{
+  all: unset;
+  cursor: pointer;
+}

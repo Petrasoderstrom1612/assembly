@@ -11,7 +11,7 @@ function App() {
   console.log(typeof letters);
 
   const word = Array.from(currentWord).map((letter, index) => (<div key={index} className="hangman-box"><p>{letter.toUpperCase()}</p></div>))
-  const keyboard = alphabet.map((letter, index) => (<div key={index} className="keyboard-box"><p>{letter.toUpperCase()}</p></div>) )
+  const keyboard = alphabet.map((letter, index) => (<div key={index} className="keyboard-box"><button className="keyboard-btn">{letter.toUpperCase()}</button></div>) )
 
   return (
     <main>
