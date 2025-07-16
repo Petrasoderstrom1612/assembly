@@ -11,7 +11,7 @@ function App() {
   console.log(typeof letters);
 
   const word = Array.from(currentWord).map((letter, index) => (<div key={index} className="hangman-box"><p>{letter.toUpperCase()}</p></div>))
-  const keyboard = alphabet.map((letter, index) => (<div key={index} className="keyboard-box"><button className="keyboard-btn">{letter.toUpperCase()}</button></div>) )
+  const keyboard = alphabet.map((letter, index) => (<button key={index} className="keyboard-btn">{letter.toUpperCase()}</button>) )
 
   return (
     <main>
@@ -20,6 +20,7 @@ function App() {
       <Languages/>
       <section className="hangman-word">{word}</section>
       <section className="flex-wrapper">{keyboard}</section>
+      <button className="new-game-btn">New Game</button>
     </main>
   )
 }
