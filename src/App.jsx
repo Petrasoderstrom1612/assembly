@@ -6,12 +6,18 @@ import Languages from './components/Languages'
 
 function App() {
   const [currentWord, setCurrentWord] = useState("react")
+  const [guessedLetters, setGuessedLetters] = useState([])
 
   const alphabet = [...'abcdefghijklmnopqrstuvwxyz'];
-  console.log(typeof letters);
 
+  const saveGuessed = (letter) => {
+    setGuessedLetters(prevGuessed => ([...prevGuessed, letter]))
+  }
+  const keyboard = alphabet.map((letter, index) => (<button key={index} className="keyboard-btn" onClick={() => saveGuessed(letter)} >{letter.toUpperCase()}</button>) ) 
   const word = Array.from(currentWord).map((letter, index) => (<div key={index} className="hangman-box"><p>{letter.toUpperCase()}</p></div>))
-  const keyboard = alphabet.map((letter, index) => (<button key={index} className="keyboard-btn">{letter.toUpperCase()}</button>) )
+
+
+  console.log(guessedLetters)
 
   return (
     <main>
