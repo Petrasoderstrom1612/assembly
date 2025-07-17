@@ -10,11 +10,13 @@ function App() {
 
   const alphabet = [...'abcdefghijklmnopqrstuvwxyz'];
 
-  const saveGuessed = (letter) => {
-    setGuessedLetters(prevGuessed => ([...prevGuessed, letter]))
+  const saveGuessedLetter = (letter) => {
+    setGuessedLetters(prevGuessed => (
+     prevGuessed.includes(letter) ? prevGuessed : [...prevGuessed, letter]
+    ))
   }
-  const keyboard = alphabet.map((letter, index) => (<button key={index} className="keyboard-btn" onClick={() => saveGuessed(letter)} >{letter.toUpperCase()}</button>) ) 
-  const word = Array.from(currentWord).map((letter, index) => (<div key={index} className="hangman-box"><p>{letter.toUpperCase()}</p></div>))
+  const keyboard = alphabet.map((letter, index) => (<button key={index} className="keyboard-btn" onClick={() => saveGuessedLetter(letter)} >{letter.toUpperCase()}</button>) ) 
+  const word = Array.from(currentWord).map((letter, index) => (<div key={index} className="hangman-box" ><p>{letter.toUpperCase()}</p></div>))
 
 
   console.log(guessedLetters)
