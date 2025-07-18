@@ -113,9 +113,9 @@ h2{
 }
 
 .green{
-  background-color:#10A95B;
+  background-color:#10A95B !important;
 }
 
 .red{
-  background-color:red;
+  background-color:red !important;
 }
