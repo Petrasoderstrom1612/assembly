@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import './index.css'
+import { clsx } from 'clsx';
 import Header from './components/Header'
 import Status from './components/Status'
 import Languages from './components/Languages'
@@ -15,7 +16,13 @@ function App() {
      prevGuessed.includes(letter) ? prevGuessed : [...prevGuessed, letter]
     ))
   }
-  const keyboard = alphabet.map((letter, index) => (<button key={index} className="keyboard-btn" onClick={() => saveGuessedLetter(letter)} >{letter.toUpperCase()}</button>) ) 
+  const keyboard = alphabet.map((letter, index) => { 
+    return ( 
+    // <button key={index} className={`keyboard-btn ${guessedLetters.includes(letter) && currentWord.includes(letter) ? "green" : guessedLetters.includes(letter) && !currentWord.includes(letter) ? "red" : "yellow"}`} onClick={() => saveGuessedLetter(letter)} >{letter.toUpperCase()}</button>) 
+    // If the letter is guessed and is part of the mystery word | if the letter is guessed but is not in the mystery world | if not guessed yet
+    <button key={index} className={`keyboard-btn ${clsx(guessedLetters.includes(letter) && currentWord.includes(letter) && "green" , guessedLetters.includes(letter) && !currentWord.includes(letter) && "red", "yellow")}`} onClick={() => saveGuessedLetter(letter)} >{letter.toUpperCase()}</button>) 
+
+  }) 
   const word = Array.from(currentWord).map((letter, index) => (<div key={index} className="hangman-box" ><p>{letter.toUpperCase()}</p></div>))
 
 
