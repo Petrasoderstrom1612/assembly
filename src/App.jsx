@@ -13,7 +13,7 @@ function App() {
 
   const countWrongGuesses = () => {
     return guessedLetters.filter(letter => !currentWord.includes(letter)).length //you can filter an array, would you do it the other way around aka filter currentWord, do .split("") before .filter
-  }
+  } //the filter filters fwd only the wrong letters in an array, as filter always returns an array, .length then gives us nr of items in the array, do not forget return!
 
   console.log("wrong guesses",countWrongGuesses())
 
