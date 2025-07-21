@@ -11,11 +11,18 @@ function App() {
 
   const alphabet = [...'abcdefghijklmnopqrstuvwxyz'];
 
+  const countWrongGuesses = () => {
+    return guessedLetters.filter(letter => !currentWord.includes(letter)).length //you can filter an array, would you do it the other way around aka filter currentWord, do .split("") before .filter
+  }
+
+  console.log("wrong guesses",countWrongGuesses())
+
   const saveGuessedLetter = (letter) => {
     setGuessedLetters(prevGuessed => (
      prevGuessed.includes(letter) ? prevGuessed : [...prevGuessed, letter]
     ))
   }
+
   const keyboard = alphabet.map((letter, index) => { 
     const colorClass = clsx(
       "keyboard-btn",
@@ -24,6 +31,8 @@ function App() {
       red: guessedLetters.includes(letter) && !currentWord.includes(letter),
       yellow: !guessedLetters.includes(letter), // default
     })
+
+    console.log("color class",colorClass)
     return ( 
     //<button key={index} className={`keyboard-btn ${guessedLetters.includes(letter) && currentWord.includes(letter) ? "green" : guessedLetters.includes(letter) && !currentWord.includes(letter) ? "red" : "yellow"}`} onClick={() => saveGuessedLetter(letter)} >{letter.toUpperCase()}</button>) 
     //<button key={index} className={clsx("keyboard-btn",guessedLetters.includes(letter) && currentWord.includes(letter) && "green", guessedLetters.includes(letter) && !currentWord.includes(letter) && "red", "yellow")} onClick={() => saveGuessedLetter(letter)} >{letter.toUpperCase()}</button>) 
@@ -31,7 +40,8 @@ function App() {
     <button key={index} className={colorClass} onClick={() => saveGuessedLetter(letter)}>{letter.toUpperCase()}</button>) //important with the onClick here so the component rerenders and color updates!
 
   }) 
-  const word = Array.from(currentWord).map((letter, index) => (<div key={index} className="hangman-box"><p>{letter.toUpperCase()}</p></div>))
+
+  const word = Array.from(currentWord).map((letter, index) => (<div key={index} className="hangman-box"><p>{guessedLetters.includes(letter) ? letter.toUpperCase() : ""}</p></div>))
 
 
   console.log(guessedLetters)
