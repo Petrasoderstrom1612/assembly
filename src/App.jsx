@@ -4,18 +4,23 @@ import { clsx } from 'clsx';
 import Header from './components/Header'
 import Status from './components/Status'
 import Languages from './components/Languages'
+import { languages } from './data/languages';
 
 function App() {
-  const [currentWord, setCurrentWord] = useState("react")
+  const [currentWord, setCurrentWord] = useState("re")
   const [guessedLetters, setGuessedLetters] = useState([])
 
   const alphabet = [...'abcdefghijklmnopqrstuvwxyz'];
 
+  // Derived state
   const countWrongGuesses = () => {
     return guessedLetters.filter(letter => !currentWord.includes(letter)).length //you can filter an array, would you do it the other way around aka filter currentWord, do .split("") before .filter
   } //the filter filters fwd only the wrong letters in an array, as filter always returns an array, .length then gives us nr of items in the array, do not forget return!
 
-  console.log("wrong guesses",countWrongGuesses())
+  const gameWon = currentWord.split("").every(letter => guessedLetters.includes(letter))
+  const gameLost = countWrongGuesses() > languages.length -1
+  const gameOver = gameWon || gameLost 
+ 
 
   const saveGuessedLetter = (letter) => {
     setGuessedLetters(prevGuessed => (
@@ -32,7 +37,7 @@ function App() {
       yellow: !guessedLetters.includes(letter), // default
     })
 
-    console.log("color class",colorClass)
+    // console.log("color class",colorClass)
     return ( 
     //<button key={index} className={`keyboard-btn ${guessedLetters.includes(letter) && currentWord.includes(letter) ? "green" : guessedLetters.includes(letter) && !currentWord.includes(letter) ? "red" : "yellow"}`} onClick={() => saveGuessedLetter(letter)} >{letter.toUpperCase()}</button>) 
     //<button key={index} className={clsx("keyboard-btn",guessedLetters.includes(letter) && currentWord.includes(letter) && "green", guessedLetters.includes(letter) && !currentWord.includes(letter) && "red", "yellow")} onClick={() => saveGuessedLetter(letter)} >{letter.toUpperCase()}</button>) 
@@ -43,17 +48,14 @@ function App() {
 
   const word = Array.from(currentWord).map((letter, index) => (<div key={index} className="hangman-box"><p>{guessedLetters.includes(letter) ? letter.toUpperCase() : ""}</p></div>))
 
-
-  console.log(guessedLetters)
-
   return (
     <main>
       <Header/>
       <Status/>
-      <Languages countWrongGuesses = {countWrongGuesses}/>
+      <Languages languages={languages} countWrongGuesses = {countWrongGuesses}/>
       <section className="hangman-word">{word}</section>
       <section className="flex-wrapper">{keyboard}</section>
-      <button className="new-game-btn">New Game</button>
+      {gameOver && <button className="new-game-btn">New Game</button>}
     </main>
   )
 }
