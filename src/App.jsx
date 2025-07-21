@@ -50,7 +50,7 @@ function App() {
     <main>
       <Header/>
       <Status/>
-      <Languages/>
+      <Languages countWrongGuesses = {countWrongGuesses}/>
       <section className="hangman-word">{word}</section>
       <section className="flex-wrapper">{keyboard}</section>
       <button className="new-game-btn">New Game</button>
