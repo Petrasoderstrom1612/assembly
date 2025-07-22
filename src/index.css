@@ -42,7 +42,7 @@ header{
   border-radius: 4px;
   color: #F9F4DA;
   margin-block: 30px;
-  height: 77px;
+  min-height: 77px;
   width: 330px;
 }
 
@@ -138,5 +138,5 @@ h2{
 }
 
 .red{
-  background-color:red !important;
+  background-color:#EC5D49 !important;
 }

@@ -2,7 +2,7 @@ import { useState } from 'react'
 import './index.css'
 import { clsx } from 'clsx';
 import Header from './components/Header'
-import Status from './components/Status'
+// import Status from './components/Status'
 import Languages from './components/Languages'
 import { languages } from './data/languages';
 
@@ -48,10 +48,38 @@ function App() {
 
   const word = Array.from(currentWord).map((letter, index) => (<div key={index} className="hangman-box"><p>{guessedLetters.includes(letter) ? letter.toUpperCase() : ""}</p></div>))
 
+  const statusCSS = clsx("status-div", {
+    green: gameWon,
+    red: gameLost
+  })
+
+  const renderStatus = () => {
+    if(!gameOver) {
+      return null
+    }
+
+    if(gameWon){
+      return (      
+        <>
+          <h2>You win!</h2>
+          <h2>Well done! 🎉</h2>
+        </>
+      )
+    } else{
+      return (
+        <>
+          <h2>Game over!</h2>
+          <h2>You lose! Better start learning Assembly 😭</h2>
+        </>
+      )
+    }
+  }
+
   return (
     <main>
       <Header/>
-      <Status gameWon={gameWon} gameLost={gameLost}/>
+      {/* <Status gameWon={gameWon} gameLost={gameLost}/> */}
+      <div className={statusCSS}>{renderStatus()}</div>
       <Languages languages={languages} countWrongGuesses = {countWrongGuesses}/>
       <section className="hangman-word">{word}</section>
       <section className="flex-wrapper">{keyboard}</section>
