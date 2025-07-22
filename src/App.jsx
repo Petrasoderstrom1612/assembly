@@ -12,7 +12,7 @@ function App() {
 
   const alphabet = [...'abcdefghijklmnopqrstuvwxyz'];
 
-  // Derived state
+  // DERIVED STATE
   const countWrongGuesses = () => {
     return guessedLetters.filter(letter => !currentWord.includes(letter)).length //you can filter an array, would you do it the other way around aka filter currentWord, do .split("") before .filter
   } //the filter filters fwd only the wrong letters in an array, as filter always returns an array, .length then gives us nr of items in the array, do not forget return!
@@ -32,7 +32,7 @@ function App() {
     const colorClass = clsx(
       "keyboard-btn",
       {
-      green: guessedLetters.includes(letter) && currentWord.includes(letter),
+      green: guessedLetters.includes(letter) && currentWord.includes(letter), //here green red and yellow are the css variables
       red: guessedLetters.includes(letter) && !currentWord.includes(letter),
       yellow: !guessedLetters.includes(letter), // default
     })
@@ -51,7 +51,7 @@ function App() {
   return (
     <main>
       <Header/>
-      <Status/>
+      <Status gameWon={gameWon} gameLost={gameLost}/>
       <Languages languages={languages} countWrongGuesses = {countWrongGuesses}/>
       <section className="hangman-word">{word}</section>
       <section className="flex-wrapper">{keyboard}</section>

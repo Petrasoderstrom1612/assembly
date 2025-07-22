@@ -31,13 +31,14 @@ header{
 }
 
 .status-div{
-  background-color: #10A95B;
   text-align: center;
+  justify-content: center;
   display: flex;
   flex-direction: column;
   border-radius: 4px;
   color: #F9F4DA;
   margin-block: 30px;
+  height: 77px;
 }
 
 h2{
