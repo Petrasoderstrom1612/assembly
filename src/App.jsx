@@ -101,6 +101,7 @@ function App() {
       <div className={statusCSS}>{renderStatus(languages)}</div>
       <Languages languages={languages} countWrongGuesses = {countWrongGuesses}/>
       <section className="hangman-word">{word}</section>
+      <section className="sr-only" aria-live="polite" role="status of the guessed letter"></section>
       <section className="flex-wrapper">{keyboard}</section>
       {gameOver && <button className="new-game-btn">New Game</button>}
     </main>
