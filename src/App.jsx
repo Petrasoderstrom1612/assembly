@@ -60,7 +60,11 @@ function App() {
       if (countWrongGuesses() !== 0) {//when you play and guessed at least once aka not start screen (you do not want a message there)
         const deleteIndex = countWrongGuesses() - 1
         const language = languages[deleteIndex].name
-        return getFarewellText(language)
+        return (      
+        <>
+          <h2>{getFarewellText(language)}</h2>
+        </>
+      )
       }
 
       return null
