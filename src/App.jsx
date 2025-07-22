@@ -61,9 +61,7 @@ function App() {
         const deleteIndex = countWrongGuesses() - 1
         const language = languages[deleteIndex].name
         return (      
-        <>
           <h2>{getFarewellText(language)}</h2>
-        </>
       )
       }
 
