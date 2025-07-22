@@ -21,8 +21,6 @@ function App() {
 
   const gameWon = currentWord.split("").every(letter => guessedLetters.includes(letter))
   const gameLost = countWrongGuesses() > languages.length -1
-  const gamePlay = !gameWon || !gameLost
-  console.log(gamePlay)
   const gameOver = gameWon || gameLost 
  
 
@@ -58,15 +56,14 @@ function App() {
   })
 
   const renderStatus = (languages) => {
-    // if(!gameOver) {
-      //   return null
-      // }
+    if (!gameOver) {
+      if (countWrongGuesses() !== 0) {//when you play and guessed at least once aka not start screen (you do not want a message there)
+        const deleteIndex = countWrongGuesses() - 1
+        const language = languages[deleteIndex].name
+        return getFarewellText(language)
+      }
 
-      if(gamePlay && countWrongGuesses() !== 0) { //when you play and guessed at least once aka not start screen (you do not want a message there)
-      let deleteIndex = countWrongGuesses() - 1
-      const language = languages[deleteIndex].name
-
-      return getFarewellText(language)
+      return null
     }
 
     if(gameWon){
