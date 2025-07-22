@@ -4,8 +4,10 @@ import { clsx } from 'clsx';
 import Header from './components/Header'
 // import Status from './components/Status'
 import Languages from './components/Languages'
-import { languages } from './data/languages';
+import { languages } from './data/languages'
+import { getFarewellText } from './data/farewells'
 
+console.log(getFarewellText)
 function App() {
   const [currentWord, setCurrentWord] = useState("re")
   const [guessedLetters, setGuessedLetters] = useState([])
@@ -19,6 +21,8 @@ function App() {
 
   const gameWon = currentWord.split("").every(letter => guessedLetters.includes(letter))
   const gameLost = countWrongGuesses() > languages.length -1
+  const gamePlay = !gameWon || !gameLost
+  console.log(gamePlay)
   const gameOver = gameWon || gameLost 
  
 
@@ -53,9 +57,16 @@ function App() {
     red: gameLost
   })
 
-  const renderStatus = () => {
-    if(!gameOver) {
-      return null
+  const renderStatus = (languages) => {
+    // if(!gameOver) {
+      //   return null
+      // }
+
+      if(gamePlay && countWrongGuesses() !== 0) { //when you play and guessed at least once aka not start screen (you do not want a message there)
+      let deleteIndex = countWrongGuesses() - 1
+      const language = languages[deleteIndex].name
+
+      return getFarewellText(language)
     }
 
     if(gameWon){
@@ -65,7 +76,7 @@ function App() {
           <h2>Well done! 🎉</h2>
         </>
       )
-    } else{
+    } if(gameOver){
       return (
         <>
           <h2>Game over!</h2>
@@ -79,7 +90,7 @@ function App() {
     <main>
       <Header/>
       {/* <Status gameWon={gameWon} gameLost={gameLost}/> */}
-      <div className={statusCSS}>{renderStatus()}</div>
+      <div className={statusCSS}>{renderStatus(languages)}</div>
       <Languages languages={languages} countWrongGuesses = {countWrongGuesses}/>
       <section className="hangman-word">{word}</section>
       <section className="flex-wrapper">{keyboard}</section>
