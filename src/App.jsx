@@ -52,7 +52,8 @@ function App() {
 
   const statusCSS = clsx("status-div", {
     green: gameWon,
-    red: gameLost
+    red: gameLost,
+    purple: !gameOver && countWrongGuesses() !== 0
   })
 
   const renderStatus = (languages) => {
