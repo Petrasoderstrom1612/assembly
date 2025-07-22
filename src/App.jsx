@@ -44,7 +44,15 @@ function App() {
     //<button key={index} className={`keyboard-btn ${guessedLetters.includes(letter) && currentWord.includes(letter) ? "green" : guessedLetters.includes(letter) && !currentWord.includes(letter) ? "red" : "yellow"}`} onClick={() => saveGuessedLetter(letter)} >{letter.toUpperCase()}</button>) 
     //<button key={index} className={clsx("keyboard-btn",guessedLetters.includes(letter) && currentWord.includes(letter) && "green", guessedLetters.includes(letter) && !currentWord.includes(letter) && "red", "yellow")} onClick={() => saveGuessedLetter(letter)} >{letter.toUpperCase()}</button>) 
     // If the letter is guessed and is part of the mystery word | if the letter is guessed but is not in the mystery world | if not guessed yet
-    <button key={index} className={colorClass}  onClick={() => saveGuessedLetter(letter)}  disabled={gameOver}>{letter.toUpperCase()}</button>) //important with the onClick here so the component rerenders and color updates!
+    <button 
+    key={index} 
+    className={colorClass}  
+    onClick={() => saveGuessedLetter(letter)}  
+    disabled={guessedLetters.includes(letter) || gameOver}
+    aria-label={`letter. ${letter}`}
+    aria-disabled={guessedLetters.includes(letter)}
+    >
+      {letter.toUpperCase()}</button>) //important with the onClick here so the component rerenders and color updates!
 
   }) 
 
