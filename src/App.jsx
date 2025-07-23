@@ -9,7 +9,7 @@ import { getFarewellText } from './data/farewells'
 
 console.log(getFarewellText)
 function App() {
-  const [currentWord, setCurrentWord] = useState("re")
+  const [currentWord, setCurrentWord] = useState("react")
   const [guessedLetters, setGuessedLetters] = useState([])
 
   const alphabet = [...'abcdefghijklmnopqrstuvwxyz'];
@@ -22,7 +22,6 @@ function App() {
   const gameWon = currentWord.split("").every(letter => guessedLetters.includes(letter))
   const gameLost = countWrongGuesses() > languages.length -1
   const gameOver = gameWon || gameLost 
- 
 
   const saveGuessedLetter = (letter) => {
     setGuessedLetters(prevGuessed => (
@@ -49,7 +48,7 @@ function App() {
     className={colorClass}  
     onClick={() => saveGuessedLetter(letter)}  
     disabled={guessedLetters.includes(letter) || gameOver}
-    aria-label={`letter. ${letter}`}
+    aria-label={`Letter ${letter}`}
     aria-disabled={guessedLetters.includes(letter)}
     >
       {letter.toUpperCase()}</button>) //important with the onClick here so the component rerenders and color updates!
@@ -100,8 +99,12 @@ function App() {
       {/* <Status gameWon={gameWon} gameLost={gameLost}/> */}
       <div className={statusCSS}>{renderStatus(languages)}</div>
       <Languages languages={languages} countWrongGuesses = {countWrongGuesses}/>
-      <section className="hangman-word">{word}</section>
-      <section className="sr-only" aria-live="polite" role="status of the guessed letter"></section>
+      <section className="hangman-word" aria-hidden="true">{word}</section>
+      <section className="sr-only" aria-live="polite" role="status of the guessed letter">
+        {
+        currentWord.split("").map(letter => guessedLetters.includes(letter) ? letter : "blank").join(" ")
+      }
+      </section>
       <section className="flex-wrapper">{keyboard}</section>
       {gameOver && <button className="new-game-btn">New Game</button>}
     </main>
