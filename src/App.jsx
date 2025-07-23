@@ -72,7 +72,7 @@ function App() {
         const deleteIndex = countWrongGuesses() - 1
         const language = languages[deleteIndex].name
         return (      
-          <h2>{getFarewellText(language)}</h2>
+          <h2 aria-live="polite" role="status of the last game move">{getFarewellText(language)}</h2>
       )
       }
 
@@ -99,7 +99,7 @@ function App() {
   return (
     <main>
       <Header/>
-      
+
       {/* <Status gameWon={gameWon} gameLost={gameLost}/> just for practising purposes created as a separate JSX*/}
       <div className={statusCSS}>{renderStatus(languages)}</div>
 
