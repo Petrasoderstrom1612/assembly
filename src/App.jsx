@@ -4,14 +4,17 @@ import { clsx } from 'clsx';
 import Header from './components/Header'
 // import Status from './components/Status'
 import Languages from './components/Languages'
+import Confetti from './components/Confetti';
 import { languages } from './data/languages'
 import { getFarewellText, getWordToGuess } from './data/utils'
-// getWordToGuess
+
+
 
 function App() {
-  const [currentWord, setCurrentWord] = useState(getWordToGuess)
+  const [currentWord, setCurrentWord] = useState("abba")
+  // const [currentWord, setCurrentWord] = useState(getWordToGuess)
   const [guessedLetters, setGuessedLetters] = useState([])
-console.log(currentWord)
+
   const alphabet = [...'abcdefghijklmnopqrstuvwxyz'];
 
   const startNewGame = () => {
@@ -64,7 +67,10 @@ console.log(currentWord)
 
   }) 
 
-  const word = Array.from(currentWord).map((letter, index) => (<div key={index} className="hangman-box"><p>{guessedLetters.includes(letter) ? letter.toUpperCase() : ""}</p></div>))
+  const word = Array.from(currentWord).map((letter, index) => {
+    const neverGuessedCorrectLetters = gameLost && !guessedLetters.includes(letter)
+    return (<div key={index} className="hangman-box"><p className={clsx(neverGuessedCorrectLetters && "never-guessed-letter")}>{guessedLetters.includes(letter) || gameLost ? letter.toUpperCase() : ""}</p></div>)}
+  )
 
   const statusCSS = clsx("status-div", {
     green: gameWon,
@@ -103,7 +109,6 @@ console.log(currentWord)
   }
 
 
-
   return (
     <main>
       <Header/>
@@ -126,6 +131,7 @@ console.log(currentWord)
       <section className="flex-wrapper">{keyboard}</section>
 
       {gameOver && <button className="new-game-btn" onClick={startNewGame}>New Game</button>}
+      {gameWon && <Confetti/>}
     </main>
   )
 }
