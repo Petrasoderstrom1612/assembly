@@ -6,13 +6,18 @@ import Header from './components/Header'
 import Languages from './components/Languages'
 import { languages } from './data/languages'
 import { getFarewellText, getWordToGuess } from './data/utils'
-
+// getWordToGuess
 
 function App() {
   const [currentWord, setCurrentWord] = useState(getWordToGuess)
   const [guessedLetters, setGuessedLetters] = useState([])
-
+console.log(currentWord)
   const alphabet = [...'abcdefghijklmnopqrstuvwxyz'];
+
+  const startNewGame = () => {
+    setCurrentWord(getWordToGuess())
+    setGuessedLetters([])
+  }
 
   // DERIVED STATE
   const countWrongGuesses = () => {
@@ -20,6 +25,8 @@ function App() {
   } //the filter filters fwd only the wrong letters in an array, as filter always returns an array, .length then gives us nr of items in the array, do not forget return!
 
   const gameWon = currentWord.split("").every(letter => guessedLetters.includes(letter))
+  console.log(typeof currentWord);
+  console.log(currentWord); 
   const gameLost = countWrongGuesses() > languages.length -1
   const gameOver = gameWon || gameLost 
   const correctGuess = currentWord.includes(guessedLetters[guessedLetters.length -1]) && guessedLetters.length !== 0
@@ -95,6 +102,8 @@ function App() {
     }
   }
 
+
+
   return (
     <main>
       <Header/>
@@ -116,7 +125,7 @@ function App() {
 
       <section className="flex-wrapper">{keyboard}</section>
 
-      {gameOver && <button className="new-game-btn">New Game</button>}
+      {gameOver && <button className="new-game-btn" onClick={startNewGame}>New Game</button>}
     </main>
   )
 }

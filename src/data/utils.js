@@ -1,7 +1,7 @@
 import { words } from "./words"
 
 export const getWordToGuess = () => {
-    return words[Math.floor(Math.random() * words.length)]
+    return words[Math.floor(Math.random() * words.length)].toLowerCase()
 }
 
 export const getFarewellText = (language) => {
