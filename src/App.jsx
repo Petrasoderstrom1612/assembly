@@ -13,6 +13,7 @@ function App() {
   const [guessedLetters, setGuessedLetters] = useState([])
 
   const alphabet = [...'abcdefghijklmnopqrstuvwxyz'];
+  //
 
   // DERIVED STATE
   const countWrongGuesses = () => {
@@ -22,6 +23,8 @@ function App() {
   const gameWon = currentWord.split("").every(letter => guessedLetters.includes(letter))
   const gameLost = countWrongGuesses() > languages.length -1
   const gameOver = gameWon || gameLost 
+  const correctGuess = currentWord.includes(guessedLetters[guessedLetters.length -1]) && guessedLetters.length !== 0
+  const guessesLeft = languages.length -1 - countWrongGuesses()
 
   const saveGuessedLetter = (letter) => {
     setGuessedLetters(prevGuessed => (
@@ -100,11 +103,14 @@ function App() {
       <div className={statusCSS}>{renderStatus(languages)}</div>
       <Languages languages={languages} countWrongGuesses = {countWrongGuesses}/>
       <section className="hangman-word" aria-hidden="true">{word}</section> {/* hid for screenreaders as the upcoming section is devoted to them */}
-      <section className="sr-only" aria-live="polite" role="status of the guessed letter">
-        {
-        currentWord.split("").map(letter => guessedLetters.includes(letter) ? letter : "blank").join(" ")
-      }
+      {/* Combined visually hidden aria-live region for status updates after the user has guessed*/}
+      {guessedLetters.length > 0 && ( <section className="sr-only" aria-live="polite" role="status of the guessed letter">
+        <p>Last guessed letter was {guessedLetters[guessedLetters.length -1]}.</p>
+        <p>Letter {guessedLetters[guessedLetters.length -1]} is {correctGuess ? "Correct" : "Wrong"}.</p>
+        <p>Hangman word is: {currentWord.split("").map(letter => guessedLetters.includes(letter) ? letter : "blank").join(" ")}.</p>
+        <p>You have {guessesLeft} guesses left.</p>
       </section>
+        )}
       <section className="flex-wrapper">{keyboard}</section>
       {gameOver && <button className="new-game-btn">New Game</button>}
     </main>
