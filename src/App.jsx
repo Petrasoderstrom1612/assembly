@@ -7,7 +7,7 @@ import Languages from './components/Languages'
 import { languages } from './data/languages'
 import { getFarewellText } from './data/farewells'
 
-console.log(getFarewellText)
+
 function App() {
   const [currentWord, setCurrentWord] = useState("react")
   const [guessedLetters, setGuessedLetters] = useState([])
@@ -72,7 +72,7 @@ function App() {
         const deleteIndex = countWrongGuesses() - 1
         const language = languages[deleteIndex].name
         return (      
-          <h2 aria-live="polite" role="status of the last game move">{getFarewellText(language)}</h2>
+          <h2 aria-live="polite" role="farewell message to the latest disappeared language">{getFarewellText(language)}</h2>
       )
       }
 
@@ -107,7 +107,7 @@ function App() {
 
       <section className="hangman-word" aria-hidden="true">{word}</section> {/* hid for screenreaders as the upcoming section is devoted to them */}
       {/* Combined visually hidden aria-live region for status updates after the user has guessed*/}
-      {guessedLetters.length > 0 && ( <section className="sr-only" aria-live="polite" role="status of the guessed letter">
+      {guessedLetters.length > 0 && ( <section className="sr-only" aria-live="polite" role="game status">
         <p>Last guessed letter was {guessedLetters[guessedLetters.length -1]}.</p>
         <p>Letter {guessedLetters[guessedLetters.length -1]} is {correctGuess ? "Correct" : "Wrong"}.</p>
         <p>Hangman word is: {currentWord.split("").map(letter => guessedLetters.includes(letter) ? letter : "blank").join(" ")}.</p>
