@@ -52,7 +52,7 @@ function App() {
     onClick={() => saveGuessedLetter(letter)}  
     disabled={guessedLetters.includes(letter) || gameOver}
     aria-label={`Letter ${letter}`}
-    aria-disabled={guessedLetters.includes(letter)}
+    aria-disabled={guessedLetters.includes(letter) || gameOver}
     >
       {letter.toUpperCase()}</button>) //important with the onClick here so the component rerenders and color updates!
 
