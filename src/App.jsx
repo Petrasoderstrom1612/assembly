@@ -99,7 +99,7 @@ function App() {
       {/* <Status gameWon={gameWon} gameLost={gameLost}/> */}
       <div className={statusCSS}>{renderStatus(languages)}</div>
       <Languages languages={languages} countWrongGuesses = {countWrongGuesses}/>
-      <section className="hangman-word" aria-hidden="true">{word}</section>
+      <section className="hangman-word" aria-hidden="true">{word}</section> {/* hid for screenreaders as the upcoming section is devoted to them */}
       <section className="sr-only" aria-live="polite" role="status of the guessed letter">
         {
         currentWord.split("").map(letter => guessedLetters.includes(letter) ? letter : "blank").join(" ")
