@@ -5,11 +5,11 @@ import Header from './components/Header'
 // import Status from './components/Status'
 import Languages from './components/Languages'
 import { languages } from './data/languages'
-import { getFarewellText } from './data/farewells'
+import { getFarewellText, getWordToGuess } from './data/utils'
 
 
 function App() {
-  const [currentWord, setCurrentWord] = useState(languages[Math.floor(Math.random() * languages.length)].name)
+  const [currentWord, setCurrentWord] = useState(getWordToGuess)
   const [guessedLetters, setGuessedLetters] = useState([])
 
   const alphabet = [...'abcdefghijklmnopqrstuvwxyz'];

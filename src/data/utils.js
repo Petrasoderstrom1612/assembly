@@ -1,3 +1,9 @@
+import { words } from "./words"
+
+export const getWordToGuess = () => {
+    return words[Math.floor(Math.random() * words.length)]
+}
+
 export const getFarewellText = (language) => {
     const options = [
         `Farewell, ${language}`,
