@@ -9,11 +9,10 @@ import { getFarewellText } from './data/farewells'
 
 
 function App() {
-  const [currentWord, setCurrentWord] = useState("react")
+  const [currentWord, setCurrentWord] = useState(languages[Math.floor(Math.random() * languages.length)].name)
   const [guessedLetters, setGuessedLetters] = useState([])
 
   const alphabet = [...'abcdefghijklmnopqrstuvwxyz'];
-  //
 
   // DERIVED STATE
   const countWrongGuesses = () => {
