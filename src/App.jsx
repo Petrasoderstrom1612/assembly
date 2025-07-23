@@ -11,8 +11,7 @@ import { getFarewellText, getWordToGuess } from './data/utils'
 
 
 function App() {
-  const [currentWord, setCurrentWord] = useState("abba")
-  // const [currentWord, setCurrentWord] = useState(getWordToGuess)
+  const [currentWord, setCurrentWord] = useState(getWordToGuess)
   const [guessedLetters, setGuessedLetters] = useState([])
 
   const alphabet = [...'abcdefghijklmnopqrstuvwxyz'];
