@@ -8,8 +8,8 @@ export default () => {
     <Confetti
       width={width}
       height={height}
-      recycle={false}
-      numberOfPieces={2500}
+      recycle={false} //no restart after the loop is over - confetti are dropped
+      numberOfPieces={2500} //default is 1000, up to 10000 server manages it
     />
   )
 }
